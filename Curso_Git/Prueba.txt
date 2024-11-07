@@ -1,0 +1,16 @@
+Adios a todos
+Espero que tengan un excelente día
+
+Mi nombre es Jose
+
+La fecha ahora es 10/10/2024
+
+modificamos usuario y contraseña
+
+Comenzando con Git
+
+git show agregado
+
+commit de prueba 
+commit 2 
+commit 3
