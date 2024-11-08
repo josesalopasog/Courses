@@ -1,6 +1,42 @@
 //Objetos 
 //Un objeto puede tener propiedades y metodos 
 
+//Funcion constructor de objetos de tipo Persona
+function Persona(nombre,apellido,email){
+    //Propiedad - Parametro
+    this.nombre = nombre;
+    this.apellido = apellido;
+    this.email = email;
+    this.nombreCompleto = function(){
+        return this.nombre+' '+this.apellido;
+    }
+}
+//Creando varios objetos de clase persona 
+let padre = new Persona('Juan','Perez','jperez@correo.com');
+let madre = new Persona('Maria','Garcia','mgarcia@correo.com');
+
+console.log(padre);
+console.log(madre);
+console.log(padre.nombreCompleto());
+console.log(madre.nombreCompleto())
+
+//Otra forma de crear objetos
+let miObjeto = new Object();
+let miObjeto2 = {};
+
+let miCadena1 = new String('Hola'); //Manera formal
+let miCadena2 = 'Hola'; //Manera recomendable
+
+let miNumero = new Number(1); //Manera formal
+let miNumero2 = 1; //Manera recomendable
+
+//Usando prototype para agregar atributos a una clase
+Persona.prototype.tel = '1234567'
+
+console.log(padre);
+console.log(madre);
+
+//Creando un objeto sin constructor
 let persona = {
     //Atributos: 
     nombre: 'Juan',
@@ -10,8 +46,8 @@ let persona = {
     edad: 28,
     idioma: 'es',
     //Metodos:
-    nombreCompleto: function(){
-        return this.nombre +' '+ this.apellido
+    nombreCompleto: function(titulo,tel){
+        return titulo+':'+this.nombre +' '+ this.apellido +' '+tel;
     },
     get nombreCompleto2(){ //Con Get JS entiende que esto obtiene información de nuestro objeto
         return this.nombre+' '+this.apellido+' '+this.apellido2;
@@ -44,6 +80,16 @@ persona2.nombre = 'Carlos';
 persona2.apellido = 'Ramirez';
 persona2.direccion = 'Cra123 # 456';
 persona2.tel = '123456';
+
+//Usando metodo CALL de JS
+console.log(persona.nombreCompleto('Doc','456789'));
+
+console.log(persona.nombreCompleto.call(persona2,'Ing','1234567'));
+
+//Usando el metodo apply
+//Se usa similar a Call pero para los nuevos argumentos se usa un arreglo
+let arreglo =['Ing','1234567']
+console.log(persona.nombreCompleto.apply(persona2, arreglo));
 
 //Formas de imprimir un objeto 
 
