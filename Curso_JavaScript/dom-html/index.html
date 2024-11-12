@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo DOM con JavaScript</title>
+    <style>
+        .azul{
+            color:blue;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="azul" id='cabecera'>Ejemplo DOM con JavaScript</h1>
+    <p class='azul' id='parrafo1'>Saludos!</p>
+    <p class="azul" id='parrafo2'>Otro parrafo</p>
+
+<!--Script se debe poner despues de los elementos que queremos acceder-->>
+<script>
+    let cabecera = document.getElementById('cabecera'); //Inner es la propiedad para recuperar el texto html
+    let parrafo = document.getElementById('parrafo1');
+    console.log(`valor cabecero: ${cabecera.innerHTML}`);
+    console.log('valor parrafo:' + parrafo);
+    //Con innerHTML tambien podemos modificar el contenido 
+    parrafo.innerHTML = 'Nuevo valor del párrafo';
+    cabecera.innerHTML = 'Nueva cabecera';
+
+    let parrafos = document.getElementsByTagName('p');
+    console.log(`No.de parrafos: ${parrafos.length}`);
+    for(let i=0; i<parrafos.length; i++){
+        console.log(`i:${i} - ${parrafos[i].innerHTML}`);
+    }
+
+    let elementos = document.getElementsByClassName('azul');
+    console.log(`No.de elementos por clase: ${elementos.length}`);
+    for(let elemento of elementos){
+        console.log(`${elemento.innerHTML}`);
+    }
+
+    let elementos2 = document.querySelectorAll('p.azul');
+    console.log(`No.de elementos preguntando por query: ${elementos2.length}`);
+    for(let elemento of elementos2){
+        console.log(`${elemento.innerHTML}`);
+    }
+</script>
+
+
+</body>
+</html>
