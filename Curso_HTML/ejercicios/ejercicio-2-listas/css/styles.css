@@ -1,0 +1,63 @@
+h1{
+    font-family:'Road Rage Regular';
+    text-align: center;
+    color:white;
+}
+
+h2{
+    font-family:"BankGothic Lt BT";
+    text-align: center;
+    color:white;
+}
+
+ul{
+    display: flex; /* Hace que los elementos de la lista estén en línea */
+    list-style-type: none; /* Quita los puntos de la lista */
+    padding: 0;
+    overflow: hidden;
+    text-align: center;
+    justify-content: center; /* Asegura que los elementos se centren dentro del <ul> */
+}
+
+ol{
+    list-style: none;
+    font-family:"BankGothic Lt BT";
+    color:white;
+    text-align: center;
+    counter-reset: contador;
+}
+
+ol li{
+    counter-increment: contador;
+}
+
+ol li::before{
+    content: "Lenguaje " counter(contador) "- ";
+    color: rgb(0,225,255)
+}
+
+li a:link, a:visited {
+    font-family:"BankGothic Lt BT";
+    background-color:rgb(0, 0, 0);
+    color:aliceblue;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+li a:hover, a:active {
+    color:rgb(255, 0, 255);
+    background-color:rgb(10, 10, 10);
+    /*text-decoration: underline;*/
+}
+
+
+pre{
+    font-family:"BankGothic Lt BT";
+    color:white;
+    text-align: center;
+}
+
+body{
+    background-color: rgb(4, 4, 4);
+}

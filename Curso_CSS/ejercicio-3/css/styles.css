@@ -1,0 +1,36 @@
+table{
+    width: 100%;
+}
+
+
+
+table, th, td{
+    border: 1px solid black;
+    border-collapse: collapse;
+    /*border-spacing: 5px*/
+    padding: 5px;
+}
+
+caption{
+    color:blue;
+    font-family: "Trocchi",serif;
+    font-size: 45px;
+    line-height: 70px;
+}
+th{
+    color:aliceblue;
+    background-color: darkblue;
+}
+
+tr:nth-child(even){
+    background-color: lightblue;
+}
+tr:nth-child(odd){
+    background-color: aliceblue;
+}
+
+/*
+td{
+    text-align: center;
+}
+    */
