@@ -36,3 +36,9 @@ let reloj=()=>{
 }
 
 //setInterval(reloj,1000)
+
+/*---Notas---*/
+/*Una función callback es una función que se pasa como argumento 
+a otra función para que se ejecute en un momento posterior, 
+generalmente cuando la función que la recibe ha terminado su tarea 
+o al ocurrir algún evento.*/
