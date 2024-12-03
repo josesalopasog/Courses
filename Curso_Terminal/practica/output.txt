@@ -1,0 +1,12 @@
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2  2024 output.txt
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 1
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 abc
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 datos
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 datos123
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 dot.txt
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 dot2.txt
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 file.txt
+-rwxrwxrwx 1 josesalopaso josesalopaso    0 Dec  2 14:34 index.html
+-rwxrwxrwx 1 josesalopaso josesalopaso   55 Dec  2 16:45 error.txt
+-rwxrwxrwx 1 josesalopaso josesalopaso 1.7K Dec  2 15:15 mispictures.txt
+total 8.0K
