@@ -1,37 +1,43 @@
-Comando 	Significado	Ejemplo
-ls	Lista el contenido del directorio actual.	ls -l (muestra detalles).
-cd	Cambia al directorio especificado.	cd /home/usuario/Documentos
-pwd	Muestra la ruta completa del directorio actual.	pwd
-mkdir	Crea un nuevo directorio.	mkdir nueva_carpeta
-rmdir	Borra un directorio vacío.	rmdir carpeta_vacia
-touch	Crea un archivo vacío.	touch archivo.txt
-cp	Copia archivos o directorios.	cp archivo.txt copia.txt
-mv	Mueve o renombra archivos o directorios.	mv archivo.txt nuevo_nombre.txt
-rm	Borra archivos o directorios.	rm archivo.txt
-cat	Muestra el contenido de un archivo.	cat archivo.txt
-nano	Abre un editor de texto en la terminal.	nano archivo.txt
-vi	Abre el editor de texto vi en la terminal.	vi archivo.txt
-df	Muestra el uso del espacio en disco.	df -h
-du	Muestra el uso del espacio por archivos o carpetas.	du -sh carpeta
-uname	Muestra información del sistema operativo.	uname -a
-top	Muestra los procesos en ejecución y el uso de recursos del sistema.	top
-ps	Lista los procesos en ejecución.	ps aux
-kill	Finaliza un proceso por su ID.	kill 1234
-sudo	Ejecuta comandos como superusuario.	sudo apt update
-chmod	Cambia los permisos de archivos o directorios.	chmod 755 archivo.sh
-chown	Cambia el propietario de un archivo o directorio.	chown usuario archivo.txt
-apt update	Actualiza la lista de paquetes disponibles (Ubuntu).	sudo apt update
-apt upgrade	Instala actualizaciones de paquetes (Ubuntu).	sudo apt upgrade
-wget	Descarga archivos desde una URL.	wget https://ejemplo.com/archivo
-curl	Realiza peticiones HTTP y descarga contenido desde una URL.	curl https://ejemplo.com
-find	Busca archivos o directorios en el sistema.	find /home -name archivo.txt
-grep	Busca texto dentro de archivos.	"grep ""texto"" archivo.txt"
-zip	Comprime archivos en un archivo ZIP.	zip archivo.zip archivo.txt
-unzip	Extrae archivos de un archivo ZIP.	unzip archivo.zip
-tar	Comprime o descomprime archivos en formato TAR.	tar -czvf archivo.tar.gz carpeta
-man	Muestra el manual de un comando específico.	man ls
-echo	Imprime texto en la terminal o redirige salida a un archivo.	"echo ""Hola Mundo"" > saludo.txt"
-history	Muestra el historial de comandos ejecutados en la terminal.	history
-clear	Limpia la pantalla de la terminal.	clear
-		
-		
+Comando 	Acronimo	Significado	Ejemplo
+ls	List	Lista el contenido del directorio actual.	ls -l (muestra detalles).
+ls *.ext	List	Lista el contenido según la extensión. 	ls *.html 
+ls nombre*	List	Lista el contenido según el nombre del archivo o carpeta. 	ls index* 
+ls [[:upper:]]*	List	Lista el contenido que empieze por mayuscula 	ls [[:upper:]]*
+ls [[:lower:]]*	List	Lista el contenido que empieze por minusculas	ls [[:upper:]]*
+|	Pipe Operator	Pipe operetor nos permite encadenar comandos.	"cowsay ""Hola Mundo"" | lolcat"
+cd	Change Directory	Cambia al directorio especificado.	cd /home/usuario/Documentos
+pwd	Print Working Directory	Muestra la ruta completa del directorio actual.	pwd
+mkdir	Make Directory	Crea un nuevo directorio.	mkdir nueva_carpeta
+rmdir	Remove Directory	Borra un directorio vacío.	rmdir carpeta_vacia
+touch	-	Crea un archivo vacío.	touch archivo.txt
+cp	Copy	Copia archivos o directorios.	cp archivo.txt copia.txt
+mv	Move	Mueve o renombra archivos o directorios.	mv archivo.txt nuevo_nombre.txt
+rm	Remove Directory	Borra archivos o directorios.	rm archivo.txt
+cat	Concatenate	Muestra el contenido de un archivo.	cat archivo.txt
+nano	-	Abre un editor de texto en la terminal.	nano archivo.txt
+vi	Visual Interface	Abre el editor de texto vi en la terminal.	vi archivo.txt
+df	Disk Free	Muestra el uso del espacio en disco.	df -h
+du	Disk Usage	Muestra el uso del espacio por archivos o carpetas.	du -sh carpeta
+uname	Unix Name	Muestra información del sistema operativo.	uname -a
+top	-	Muestra los procesos en ejecución y el uso de recursos del sistema.	top
+ps	Process Status	Lista los procesos en ejecución.	ps aux
+kill	-	Finaliza un proceso por su ID.	kill 1234
+sudo	Super User Do	Ejecuta comandos como superusuario.	sudo apt update
+chmod	Change Mode 	Cambia los permisos de archivos o directorios.	chmod 755 archivo.sh
+chown	Change Owner	Cambia el propietario de un archivo o directorio.	chown usuario archivo.txt
+apt update	Advance Package Tool	Actualiza la lista de paquetes disponibles (Ubuntu).	sudo apt update
+apt upgrade	Advance Package Tool	Instala actualizaciones de paquetes (Ubuntu).	sudo apt upgrade
+wget	World Wide Web Get	Descarga archivos desde una URL.	wget https://ejemplo.com/archivo
+curl	Client URL	Realiza peticiones HTTP y descarga contenido desde una URL.	curl https://ejemplo.com
+find	-	Busca archivos o directorios en el sistema.	find /home -name archivo.txt
+grep	Global Regular Expression Print	Busca texto dentro de archivos.	"grep ""texto"" archivo.txt"
+zip	-	Comprime archivos en un archivo ZIP.	zip archivo.zip archivo.txt
+unzip	-	Extrae archivos de un archivo ZIP.	unzip archivo.zip
+tar	Tape Archive	Comprime o descomprime archivos en formato TAR.	tar -czvf archivo.tar.gz carpeta
+man	Manual	Muestra el manual de un comando específico.	man ls
+echo	-	Imprime texto en la terminal o redirige salida a un archivo.	"echo ""Hola Mundo"" > saludo.txt"
+history	-	Muestra el historial de comandos ejecutados en la terminal.	history
+clear	-	Limpia la pantalla de la terminal.	clear
+tee	-	Lee desde la standard input y escribe en un archivo y en la standard outputs	tee output.txt
+printenv 	Print Enviroment	Muestra las variables de entorno.	printenv 
+which			
