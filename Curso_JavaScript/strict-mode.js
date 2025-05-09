@@ -1,7 +1,7 @@
 "use strict"
 
 let x = 10;
-console.log(x);
+console.log(x=="10");
 
 function miFuncion(){
     let y = 15;
@@ -9,3 +9,4 @@ function miFuncion(){
 }
 
 miFuncion();
+

@@ -1,0 +1,10 @@
+var user = "John Doe";
+var age = 26;
+var isAdmin = true;
+var pronouns = ["he", "him"];
+var nullValue = null;
+var undefinedValue;
+console.log("Hello, ".concat(user, "!"));
+console.log("You are ".concat(age, " years old."));
+console.log("Is admin: ".concat(isAdmin));
+console.log("This var is undefined: ".concat(undefinedValue));
