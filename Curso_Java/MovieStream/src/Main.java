@@ -7,8 +7,11 @@ import java.time.temporal.IsoFields;
 import java.util.SortedSet;
 
 public class Main {
+    public static final String APP_NAME = "MOVIE STREAM APP 🎬";
+    public static final String VERSION = "1.0.0";
+
     public static void main(String[] args){
-        System.out.println("MOVIE STREAM APP 🎬");
+        System.out.println(APP_NAME + " v" + VERSION);
 
         String movieTitle = ScannerUtils.getText("Write name of the movie: ");
         String movieGenre = ScannerUtils.getText("Write movie genre: ");
@@ -21,7 +24,6 @@ public class Main {
         movie.genre = movieGenre;
         movie.rate(movieRate);
         movie.duration = movieDuration;
-
 
 //        Movie movie = new Movie();
 //        movie.title = "Lord of rings";
