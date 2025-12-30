@@ -1,5 +1,6 @@
 import content.Movie;
 import plataforma.User;
+import utils.ScannerUtils;
 
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;
@@ -7,12 +8,27 @@ import java.util.SortedSet;
 
 public class Main {
     public static void main(String[] args){
+        System.out.println("MOVIE STREAM APP 🎬");
+
+        String movieTitle = ScannerUtils.getText("Write name of the movie: ");
+        String movieGenre = ScannerUtils.getText("Write movie genre: ");
+        int movieDuration = ScannerUtils.getNumber("Write movie duration: ");
+        double movieRate = ScannerUtils.getDouble("Write movie rate: ");
+
         Movie movie = new Movie();
-        movie.title = "Lord of rings";
+        movie.title = movieTitle;
         movie.dateOfPremiere = LocalDate.of(2018,10,15);
-        movie.genre = "Fantasy";
-        movie.rate(4.7);
-        movie.duration = 120;
+        movie.genre = movieGenre;
+        movie.rate(movieRate);
+        movie.duration = movieDuration;
+
+
+//        Movie movie = new Movie();
+//        movie.title = "Lord of rings";
+//        movie.dateOfPremiere = LocalDate.of(2018,10,15);
+//        movie.genre = "Fantasy";
+//        movie.rate(4.7);
+//        movie.duration = 120;
 
         long durationLong = movie.duration;
         int rate = (int) movie.score;
@@ -21,7 +37,7 @@ public class Main {
         System.out.println("Movie duration: " + durationLong);
         System.out.println("Rate in Int: " + rate);
         System.out.println("Normal rate: " + movie.score);
-        System.out.println("");
+        System.out.println("Number of awards: " + numberOfAwards );
 
         User user = new User();
         user.name = "Jose";
