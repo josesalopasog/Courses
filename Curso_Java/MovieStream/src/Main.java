@@ -18,12 +18,8 @@ public class Main {
         int movieDuration = ScannerUtils.getNumber("Write movie duration: ");
         double movieRate = ScannerUtils.getDouble("Write movie rate: ");
 
-        Movie movie = new Movie();
-        movie.title = movieTitle;
+        Movie movie = new Movie(movieTitle, movieDuration,movieGenre, movieRate);
         movie.dateOfPremiere = LocalDate.of(2018,10,15);
-        movie.genre = movieGenre;
-        movie.rate(movieRate);
-        movie.duration = movieDuration;
 
 //        Movie movie = new Movie();
 //        movie.title = "Lord of rings";
@@ -41,13 +37,10 @@ public class Main {
         System.out.println("Normal rate: " + movie.score);
         System.out.println("Number of awards: " + numberOfAwards );
 
-        User user = new User();
-        user.name = "Jose";
-
+        User user = new User("Jose", "josesalopaso@email.com");
         user.watch(movie);
 
         System.out.println(movie.getDatasheet());
-
 
     }
 }
