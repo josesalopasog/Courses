@@ -3,14 +3,14 @@ package content;
 import java.time.LocalDate;
 
 public class Movie {
-    public String title;
-    public String description;
-    public int duration;
-    public String genre;
-    public LocalDate dateOfPremiere;
-    public double score;
-    public boolean status;
-    public LocalDate registrationDate;
+    private String title;
+    private String description;
+    private int duration;
+    private String genre;
+    private LocalDate dateOfPremiere;
+    private double score;
+    private boolean status;
+    private LocalDate registrationDate;
 
     public Movie(String title, int duration, String genre){
         this.title = title;
@@ -45,4 +45,62 @@ public class Movie {
     public boolean isPopular(){
         return score >=4;
     }
+
+    //Getters Methods
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription(){
+        return  description;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public LocalDate getDateOfPremiere() {
+        return dateOfPremiere;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public LocalDate getRegistrationDate() {
+        return registrationDate;
+    }
+    //Setters Methods
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setDateOfPremiere(LocalDate dateOfPremiere) {
+        this.dateOfPremiere = dateOfPremiere;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
+
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+
+
 }

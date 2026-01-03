@@ -19,8 +19,9 @@ public class Main {
         double movieRate = ScannerUtils.getDouble("Write movie rate: ");
 
         Movie movie = new Movie(movieTitle, movieDuration,movieGenre, movieRate);
-        movie.dateOfPremiere = LocalDate.of(2018,10,15);
 
+
+//        movie.dateOfPremiere = LocalDate.of(2018,10,15);
 //        Movie movie = new Movie();
 //        movie.title = "Lord of rings";
 //        movie.dateOfPremiere = LocalDate.of(2018,10,15);
@@ -28,16 +29,16 @@ public class Main {
 //        movie.rate(4.7);
 //        movie.duration = 120;
 
-        long durationLong = movie.duration;
-        int rate = (int) movie.score;
-        int numberOfAwards = (int) Long.parseLong("25");
+//        long durationLong = movie.duration;
+//        int rate = (int) movie.score;
+//        int numberOfAwards = (int) Long.parseLong("25");
 
-        System.out.println("Movie duration: " + durationLong);
-        System.out.println("Rate in Int: " + rate);
-        System.out.println("Normal rate: " + movie.score);
-        System.out.println("Number of awards: " + numberOfAwards );
+//        System.out.println("Movie duration: " + durationLong);
+//        System.out.println("Rate in Int: " + rate);
+//        System.out.println("Normal rate: " + movie.score);
+//        System.out.println("Number of awards: " + numberOfAwards );
 
-        User user = new User("Jose", "josesalopaso@email.com");
+        User user = new User("Jose");
         user.watch(movie);
 
         System.out.println(movie.getDatasheet());
