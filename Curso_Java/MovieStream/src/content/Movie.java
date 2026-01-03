@@ -12,16 +12,17 @@ public class Movie {
     private boolean status;
     private LocalDate registrationDate;
 
-    public Movie(String title, int duration, String genre){
+    public Movie(String title, int duration, String genre, LocalDate dateOfPremiere){
         this.title = title;
         this.duration = duration;
         this.genre = genre;
+        this.dateOfPremiere = dateOfPremiere;
         this.registrationDate = LocalDate.now();
         this.status = true;
     }
 
-    public Movie(String title, int duration, String genre, double score) {
-        this(title, duration, genre);
+    public Movie(String title, int duration, String genre, LocalDate dateOfPremiere, double score) {
+        this(title, duration, genre, dateOfPremiere);
         this.rate(score);
     }
 

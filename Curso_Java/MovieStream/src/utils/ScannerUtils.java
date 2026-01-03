@@ -1,5 +1,8 @@
 package utils;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class ScannerUtils {
@@ -28,5 +31,25 @@ public class ScannerUtils {
                 System.out.println("❌ Valor inválido. Intente nuevamente.");
             }
         }
+    }
+
+    public static LocalDate getDate(String message){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        LocalDate date = null;
+        boolean valid = false;
+
+        while(!valid){
+            System.out.println(message + ": ");
+            String inputDate = SCANNER.nextLine();
+
+            try{
+                date = LocalDate.parse(inputDate, formatter);
+                valid = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("❌ Enter a valid format");
+            }
+        }
+        return date;
     }
 }
