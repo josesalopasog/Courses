@@ -13,44 +13,66 @@ public class Main {
         Platform platform = new Platform(APP_NAME);
         System.out.println(APP_NAME + " v" + VERSION);
 
-        String movieTitle = ScannerUtils.getText("Write name of the movie: ");
-        String movieGenre = ScannerUtils.getText("Write movie genre: ");
-        int movieDuration = ScannerUtils.getNumber("Write movie duration: ");
-        double movieRate = ScannerUtils.getDouble("Write movie rate: ");
-        LocalDate movieDateOfPremiere = ScannerUtils.getDate("Write Date of premiere of the movie (yyyy-MM-dd): ");
+        loadSampleMovies(platform);
 
-        Movie movie = new Movie(movieTitle, movieDuration,movieGenre, movieDateOfPremiere, movieRate);
-        Movie movieTwo = new Movie("Lion King", 200, "kids", LocalDate.of(1998,5,21), 4.5 );
+        while(true){
+            int menuOption = ScannerUtils.getNumber("""
+                    Menu:
+                    1. Add a movie
+                    2. Show all
+                    3. Search by title
+                    4. Remove movie
+                    5. Exit
+                    Write the number of your option >""");
+            switch (menuOption){
+                case 1:
+                    String movieTitle = ScannerUtils.getText("Write name of the movie: ");
+                    String movieGenre = ScannerUtils.getText("Write movie genre: ");
+                    int movieDuration = ScannerUtils.getNumber("Write movie duration: ");
+                    double movieRate = ScannerUtils.getDouble("Write movie rate: ");
+                    LocalDate movieDateOfPremiere = ScannerUtils.getDate("Write Date of premiere of the movie (yyyy-MM-dd): ");
 
+                    Movie movie = new Movie(movieTitle, movieDuration,movieGenre, movieDateOfPremiere, movieRate);
 
-//        movie.dateOfPremiere = LocalDate.of(2018,10,15);
-//        Movie movie = new Movie();
-//        movie.title = "Lord of rings";
-//        movie.dateOfPremiere = LocalDate.of(2018,10,15);
-//        movie.genre = "Fantasy";
-//        movie.rate(4.7);
-//        movie.duration = 120;
+                    platform.addMovie(movie);
+                    System.out.println("✅ Movie added!");
+                    break;
 
-//        long durationLong = movie.duration;
-//        int rate = (int) movie.score;
-//        int numberOfAwards = (int) Long.parseLong("25");
+                case 2:
+                    platform.getAllTitles();
+                    break;
+                case 3:
+                    String title = ScannerUtils.getText("Write title to search: ");
+                    platform.searchByTitle(title);
+                    break;
+                case 4:
+                    String removeTitle = ScannerUtils.getText("Write title to remove: ");
+                    platform.removeByTitle(removeTitle);
+                    break;
+                case 5:
+                    System.out.println("👋🏼 Closing app...");
+                    return;
+                default:
+                    System.out.println("❌ Invalid option!");
+            }
+        }
+    }
 
-//        System.out.println("Movie duration: " + durationLong);
-//        System.out.println("Rate in Int: " + rate);
-//        System.out.println("Normal rate: " + movie.score);
-//        System.out.println("Number of awards: " + numberOfAwards );
+    private static void loadSampleMovies(Platform platform) {
+        platform.addMovie(new Movie("Inception", 148, "Sci-Fi",
+                LocalDate.of(2010, 7, 16), 8.8));
 
-        platform.addMovie(movie);
-        platform.addMovie(movieTwo);
-        System.out.println("Number of movies: " + platform.getContent().size());
+        platform.addMovie(new Movie("Interstellar", 169, "Sci-Fi",
+                LocalDate.of(2014, 11, 7), 8.6));
 
-        platform.getAllTitles();
+        platform.addMovie(new Movie("The Dark Knight", 152, "Action",
+                LocalDate.of(2008, 7, 18), 9.0));
 
-        User user = new User("Jose");
-        user.watch(movie);
+        platform.addMovie(new Movie("Gladiator", 155, "Drama",
+                LocalDate.of(2000, 5, 5), 8.5));
 
-        System.out.println(movie.getDatasheet());
-
+        platform.addMovie(new Movie("Parasite", 132, "Thriller",
+                LocalDate.of(2019, 5, 30), 8.6));
     }
 }
 

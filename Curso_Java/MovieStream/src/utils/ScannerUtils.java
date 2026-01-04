@@ -3,6 +3,7 @@ package utils;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ScannerUtils {
@@ -16,11 +17,20 @@ public class ScannerUtils {
     }
 
     public static int getNumber(String message) {
-        System.out.println(message + ": ");
-        int number = SCANNER.nextInt();
-        SCANNER.nextLine();
-        return number;
+        while (true){
+            try {
+                System.out.println(message + ": ");
+                int number = SCANNER.nextInt();
+                SCANNER.nextLine();
+                return number;
+            } catch (InputMismatchException e){
+                System.out.println("❌ Invalid Number. Try another number.");
+                SCANNER.nextLine();
+            }
+        }
+
     }
+
     public static double getDouble(String message) {
         while (true) {
             try {
@@ -28,7 +38,7 @@ public class ScannerUtils {
                 String input = SCANNER.nextLine().replace(",", ".");
                 return Double.parseDouble(input);
             } catch (NumberFormatException e) {
-                System.out.println("❌ Valor inválido. Intente nuevamente.");
+                System.out.println("❌ Invalid Value. Try another number. ");
             }
         }
     }
