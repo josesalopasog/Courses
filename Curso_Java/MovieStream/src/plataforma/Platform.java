@@ -19,9 +19,7 @@ public class Platform {
     }
 
     public void getAllTitles(){
-        for (Movie movie : movieList) {
-            System.out.println(movie.getTitle());
-        }
+        movieList.forEach( movie -> System.out.println(movie.getTitle()));
     }
 
     public void searchByTitle(String title){
@@ -38,7 +36,17 @@ public class Platform {
         if (!found) {
             System.out.println("❌ Movie not found");
         }
+    }
 
+    public List<Movie> searchByGenre(String genre){
+        List<Movie> movieListFiltered = movieList.stream()
+                .filter(movie -> movie.getGenre().equalsIgnoreCase(genre))
+                .toList();
+        if (movieListFiltered.isEmpty()) {
+            System.out.println("No movies found for genre: " + genre);
+        }
+
+        return movieListFiltered;
     }
 
     public void removeByTitle(String title) {

@@ -4,6 +4,7 @@ import plataforma.User;
 import utils.ScannerUtils;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Main {
     public static final String APP_NAME = "MOVIE STREAM APP 🎬";
@@ -22,7 +23,8 @@ public class Main {
                     2. Show all
                     3. Search by title
                     4. Remove movie
-                    5. Exit
+                    5. Search by genre
+                    6. Exit
                     Write the number of your option >""");
             switch (menuOption){
                 case 1:
@@ -50,6 +52,16 @@ public class Main {
                     platform.removeByTitle(removeTitle);
                     break;
                 case 5:
+                    String genreToSearch = ScannerUtils.getText("Write the genre of the movies: ");
+                    List<Movie> listOfMoviesByGenre = platform.searchByGenre(genreToSearch);
+
+                    if(listOfMoviesByGenre.isEmpty()){
+                        System.out.println("No movies found by genre: " + genreToSearch);
+                    }else{
+                        listOfMoviesByGenre.forEach(movieByGenre -> System.out.println(movieByGenre.getDatasheet()));
+                    }
+                    break;
+                case 6:
                     System.out.println("👋🏼 Closing app...");
                     return;
                 default:

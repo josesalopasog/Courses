@@ -31,7 +31,8 @@ public class Movie {
     }
 
     public String getDatasheet(){
-        return title + "(" + dateOfPremiere.getYear() + ")\n"
+        return "-----------Movie Datasheet--------------\n"+
+                title + "(" + dateOfPremiere.getYear() + ")\n"
                 + "Genre:" + genre + "\n"
                 + "Score:" + score + "\n";
     }
