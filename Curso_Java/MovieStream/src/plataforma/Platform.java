@@ -3,6 +3,7 @@ package plataforma;
 import content.Movie;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Platform {
@@ -18,8 +19,10 @@ public class Platform {
         this.movieList.add(element);
     }
 
-    public void getAllTitles(){
-        movieList.forEach( movie -> System.out.println(movie.getTitle()));
+    public List<String> getAllTitles(){
+        return movieList.stream()
+                .map(Movie::getTitle)
+                .toList();
     }
 
     public void searchByTitle(String title){
@@ -47,6 +50,18 @@ public class Platform {
         }
 
         return movieListFiltered;
+    }
+
+    public List<Movie> sortByRate (){
+        return movieList.stream()
+                .sorted(Comparator.comparingDouble(Movie::getScore).reversed())
+                .toList();
+    }
+
+    public int getTotalDuration(){
+        return movieList.stream()
+                .mapToInt(Movie::getDuration)
+                .sum();
     }
 
     public void removeByTitle(String title) {

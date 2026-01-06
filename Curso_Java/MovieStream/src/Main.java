@@ -16,6 +16,8 @@ public class Main {
 
         loadSampleMovies(platform);
 
+        System.out.println("Content in this app: " + platform.getTotalDuration() + "min to watch! \n");
+
         while(true){
             int menuOption = ScannerUtils.getNumber("""
                     Menu:
@@ -24,7 +26,8 @@ public class Main {
                     3. Search by title
                     4. Remove movie
                     5. Search by genre
-                    6. Exit
+                    6. View Populars
+                    7. Exit
                     Write the number of your option >""");
             switch (menuOption){
                 case 1:
@@ -41,7 +44,8 @@ public class Main {
                     break;
 
                 case 2:
-                    platform.getAllTitles();
+                    List<String> movieTitles = platform.getAllTitles();
+                    movieTitles.forEach(System.out::println);
                     break;
                 case 3:
                     String title = ScannerUtils.getText("Write title to search: ");
@@ -62,6 +66,10 @@ public class Main {
                     }
                     break;
                 case 6:
+                    List<Movie> moviesSorted = platform.sortByRate();
+                    moviesSorted.forEach(movieSorted -> System.out.println(movieSorted.getDatasheet()));
+                    break;
+                case 7:
                     System.out.println("👋🏼 Closing app...");
                     return;
                 default:
@@ -72,19 +80,19 @@ public class Main {
 
     private static void loadSampleMovies(Platform platform) {
         platform.addMovie(new Movie("Inception", 148, "Sci-Fi",
-                LocalDate.of(2010, 7, 16), 8.8));
+                LocalDate.of(2010, 7, 16), 3.8));
 
         platform.addMovie(new Movie("Interstellar", 169, "Sci-Fi",
-                LocalDate.of(2014, 11, 7), 8.6));
+                LocalDate.of(2014, 11, 7), 3.6));
 
         platform.addMovie(new Movie("The Dark Knight", 152, "Action",
-                LocalDate.of(2008, 7, 18), 9.0));
+                LocalDate.of(2008, 7, 18), 4.0));
 
         platform.addMovie(new Movie("Gladiator", 155, "Drama",
-                LocalDate.of(2000, 5, 5), 8.5));
+                LocalDate.of(2000, 5, 5), 3.5));
 
         platform.addMovie(new Movie("Parasite", 132, "Thriller",
-                LocalDate.of(2019, 5, 30), 8.6));
+                LocalDate.of(2019, 5, 30), 3.6));
     }
 }
 
