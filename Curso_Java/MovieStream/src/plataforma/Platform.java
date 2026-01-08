@@ -1,6 +1,7 @@
 package plataforma;
 
 import content.Movie;
+import content.Genre;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -41,9 +42,9 @@ public class Platform {
         }
     }
 
-    public List<Movie> searchByGenre(String genre){
+    public List<Movie> searchByGenre(Genre genre){
         List<Movie> movieListFiltered = movieList.stream()
-                .filter(movie -> movie.getGenre().equalsIgnoreCase(genre))
+                .filter(movie -> movie.getGenre().equals(genre))
                 .toList();
         if (movieListFiltered.isEmpty()) {
             System.out.println("No movies found for genre: " + genre);

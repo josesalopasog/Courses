@@ -1,3 +1,4 @@
+import content.Genre;
 import content.Movie;
 import plataforma.Platform;
 import plataforma.User;
@@ -32,7 +33,7 @@ public class Main {
             switch (menuOption){
                 case 1:
                     String movieTitle = ScannerUtils.getText("Write name of the movie: ");
-                    String movieGenre = ScannerUtils.getText("Write movie genre: ");
+                    Genre movieGenre = ScannerUtils.getGenre("Write movie genre: ");
                     int movieDuration = ScannerUtils.getNumber("Write movie duration: ");
                     double movieRate = ScannerUtils.getDouble("Write movie rate: ");
                     LocalDate movieDateOfPremiere = ScannerUtils.getDate("Write Date of premiere of the movie (yyyy-MM-dd): ");
@@ -48,19 +49,19 @@ public class Main {
                     movieTitles.forEach(System.out::println);
                     break;
                 case 3:
-                    String title = ScannerUtils.getText("Write title to search: ");
+                    String title = ScannerUtils.getText("Write title to search ");
                     platform.searchByTitle(title);
                     break;
                 case 4:
-                    String removeTitle = ScannerUtils.getText("Write title to remove: ");
+                    String removeTitle = ScannerUtils.getText("Write title to remove ");
                     platform.removeByTitle(removeTitle);
                     break;
                 case 5:
-                    String genreToSearch = ScannerUtils.getText("Write the genre of the movies: ");
+                    Genre genreToSearch = ScannerUtils.getGenre("Write the genre of the movies ");
                     List<Movie> listOfMoviesByGenre = platform.searchByGenre(genreToSearch);
 
                     if(listOfMoviesByGenre.isEmpty()){
-                        System.out.println("No movies found by genre: " + genreToSearch);
+                        System.out.println("No movies found by genre " + genreToSearch);
                     }else{
                         listOfMoviesByGenre.forEach(movieByGenre -> System.out.println(movieByGenre.getDatasheet()));
                     }
@@ -79,19 +80,19 @@ public class Main {
     }
 
     private static void loadSampleMovies(Platform platform) {
-        platform.addMovie(new Movie("Inception", 148, "Sci-Fi",
+        platform.addMovie(new Movie("Inception", 148, Genre.SCI_FI,
                 LocalDate.of(2010, 7, 16), 3.8));
 
-        platform.addMovie(new Movie("Interstellar", 169, "Sci-Fi",
+        platform.addMovie(new Movie("Interstellar", 169, Genre.SCI_FI,
                 LocalDate.of(2014, 11, 7), 3.6));
 
-        platform.addMovie(new Movie("The Dark Knight", 152, "Action",
+        platform.addMovie(new Movie("The Dark Knight", 152, Genre.ACTION,
                 LocalDate.of(2008, 7, 18), 4.0));
 
-        platform.addMovie(new Movie("Gladiator", 155, "Drama",
+        platform.addMovie(new Movie("Gladiator", 155, Genre.DRAMA,
                 LocalDate.of(2000, 5, 5), 3.5));
 
-        platform.addMovie(new Movie("Parasite", 132, "Thriller",
+        platform.addMovie(new Movie("Parasite", 132, Genre.THRILLER,
                 LocalDate.of(2019, 5, 30), 3.6));
     }
 }

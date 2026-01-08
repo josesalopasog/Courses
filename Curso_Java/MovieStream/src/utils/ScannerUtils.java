@@ -1,5 +1,7 @@
 package utils;
 
+import content.Genre;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -61,5 +63,22 @@ public class ScannerUtils {
             }
         }
         return date;
+    }
+
+    public static Genre getGenre(String message){
+        while (true){
+            System.out.println(message + "Options ");
+            for(Genre genre: Genre.values()){
+                System.out.println("-" + genre.name());
+            }
+            System.out.println("Chose your option");
+            String genre = SCANNER.nextLine();
+
+            try {
+                return Genre.valueOf(genre.toUpperCase());
+            }catch (IllegalArgumentException e){
+                System.out.println("❌ Invalid Genre");
+            }
+        }
     }
 }
