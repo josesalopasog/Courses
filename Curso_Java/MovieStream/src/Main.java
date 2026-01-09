@@ -1,5 +1,6 @@
 import content.Genre;
 import content.Movie;
+import content.SummaryContent;
 import plataforma.Platform;
 import plataforma.User;
 import utils.ScannerUtils;
@@ -45,8 +46,8 @@ public class Main {
                     break;
 
                 case 2:
-                    List<String> movieTitles = platform.getAllTitles();
-                    movieTitles.forEach(System.out::println);
+                    List<SummaryContent> moviesSummary = platform.getSummaries();
+                    moviesSummary.forEach(summary -> System.out.println(summary.toString()));
                     break;
                 case 3:
                     String title = ScannerUtils.getText("Write title to search ");

@@ -2,6 +2,7 @@ package plataforma;
 
 import content.Movie;
 import content.Genre;
+import content.SummaryContent;
 import execeptions.MovieAlreadyExistException;
 
 import java.util.ArrayList;
@@ -28,6 +29,12 @@ public class Platform {
     public List<String> getAllTitles(){
         return movieList.stream()
                 .map(Movie::getTitle)
+                .toList();
+    }
+
+    public List<SummaryContent> getSummaries(){
+        return movieList.stream()
+                .map(movie -> new SummaryContent(movie.getTitle(), movie.getDuration(), movie.getGenre()))
                 .toList();
     }
 
