@@ -2,6 +2,7 @@ package plataforma;
 
 import content.Movie;
 import content.Genre;
+import execeptions.MovieAlreadyExistException;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -17,6 +18,10 @@ public class Platform {
     }
 
     public void addMovie(Movie element){
+        Movie movieValidation = this.searchByTitle(element.getTitle());
+        if (movieValidation != null){
+            throw new MovieAlreadyExistException(element.getTitle());
+        }
         this.movieList.add(element);
     }
 
@@ -26,20 +31,13 @@ public class Platform {
                 .toList();
     }
 
-    public void searchByTitle(String title){
-        boolean found = false;
-
-        for(Movie movie: movieList) {
-            if(movie.getTitle().equalsIgnoreCase(title)){
-                System.out.println(movie.getDatasheet());
-                found = true;
-                break;
+    public Movie searchByTitle(String title) {
+        for (Movie movie : movieList) {
+            if (movie.getTitle().equalsIgnoreCase(title)) {
+                return movie;
             }
         }
-
-        if (!found) {
-            System.out.println("❌ Movie not found");
-        }
+        return null;
     }
 
     public List<Movie> searchByGenre(Genre genre){
