@@ -29,7 +29,8 @@ public class Main {
                     4. Remove movie
                     5. Search by genre
                     6. View Populars
-                    7. Exit
+                    7. Play Move
+                    8. Exit
                     Write the number of your option >""");
             switch (menuOption){
                 case 1:
@@ -72,6 +73,16 @@ public class Main {
                     moviesSorted.forEach(movieSorted -> System.out.println(movieSorted.getDatasheet()));
                     break;
                 case 7:
+                    String movieTitleToPlay = ScannerUtils.getText("Write name of the movie you want to play");
+                    Movie movieToPlay = platform.searchByTitle(movieTitleToPlay);
+
+                    if(movieToPlay != null){
+                        platform.playMovie(movieToPlay);
+                        break;
+                    }else{
+                        System.out.println("❌ Movie not found");
+                    }
+                case 8:
                     System.out.println("👋🏼 Closing app...");
                     return;
                 default:

@@ -5,17 +5,17 @@ import content.Genre;
 import content.SummaryContent;
 import execeptions.MovieAlreadyExistException;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Platform {
     private String name;
     private List<Movie> movieList;
+    private Map<Movie, Integer> views;
 
     public Platform(String name){
         this.name = name;
         this.movieList = new ArrayList<>();
+        this.views = new HashMap<>();
     }
 
     public void addMovie(Movie element){
@@ -24,6 +24,19 @@ public class Platform {
             throw new MovieAlreadyExistException(element.getTitle());
         }
         this.movieList.add(element);
+    }
+
+    public void playMovie(Movie movie){
+        int countViews = views.getOrDefault(movie, 0);
+        System.out.println(movie.getTitle() + "have" + countViews + "views");
+
+        this.countViews(movie);
+        movie.play();
+    }
+
+    private  void countViews(Movie movie){
+        int countViews = views.getOrDefault(movie, 0);
+        views.put(movie, countViews + 1);
     }
 
     public List<String> getAllTitles(){
