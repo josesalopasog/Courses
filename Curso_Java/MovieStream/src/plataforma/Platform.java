@@ -4,6 +4,7 @@ import content.Movie;
 import content.Genre;
 import content.SummaryContent;
 import execeptions.MovieAlreadyExistException;
+import utils.FileUtils;
 
 import java.util.*;
 
@@ -23,6 +24,7 @@ public class Platform {
         if (movieValidation != null){
             throw new MovieAlreadyExistException(element.getTitle());
         }
+        FileUtils.writeData(element);
         this.movieList.add(element);
     }
 
