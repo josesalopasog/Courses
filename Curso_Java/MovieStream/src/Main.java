@@ -3,8 +3,12 @@ import content.Movie;
 import content.SummaryContent;
 import plataforma.Platform;
 import plataforma.User;
+import utils.FileUtils;
 import utils.ScannerUtils;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -92,20 +96,7 @@ public class Main {
     }
 
     private static void loadSampleMovies(Platform platform) {
-        platform.addMovie(new Movie("Inception", 148, Genre.SCI_FI,
-                LocalDate.of(2010, 7, 16), 3.8));
-
-        platform.addMovie(new Movie("Interstellar", 169, Genre.SCI_FI,
-                LocalDate.of(2014, 11, 7), 3.6));
-
-        platform.addMovie(new Movie("The Dark Knight", 152, Genre.ACTION,
-                LocalDate.of(2008, 7, 18), 4.0));
-
-        platform.addMovie(new Movie("Gladiator", 155, Genre.DRAMA,
-                LocalDate.of(2000, 5, 5), 3.5));
-
-        platform.addMovie(new Movie("Parasite", 132, Genre.THRILLER,
-                LocalDate.of(2019, 5, 30), 3.6));
+        platform.getMovieList().addAll(FileUtils.readData());
     }
 }
 
