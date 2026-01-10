@@ -1,6 +1,6 @@
 package plataforma;
 
-import content.Movie;
+import content.Content;
 
 public class User {
     private final String name;
@@ -13,9 +13,9 @@ public class User {
 
     }
 
-    public void watch(Movie movie){
+    public void watch(Content content){
         System.out.println(name + " is watching...");
-        movie.play();
+        content.play();
     }
 
     public String getEmail() {

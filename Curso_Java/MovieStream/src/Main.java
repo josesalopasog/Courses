@@ -1,14 +1,10 @@
-import content.Genre;
-import content.Movie;
-import content.SummaryContent;
+import content.*;
+import execeptions.MovieAlreadyExistException;
 import plataforma.Platform;
-import plataforma.User;
 import utils.FileUtils;
 import utils.ScannerUtils;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,10 +23,10 @@ public class Main {
         while(true){
             int menuOption = ScannerUtils.getNumber("""
                     Menu:
-                    1. Add a movie
+                    1. Add a content
                     2. Show all
                     3. Search by title
-                    4. Remove movie
+                    4. Remove content
                     5. Search by genre
                     6. View Populars
                     7. Play Move
@@ -38,17 +34,41 @@ public class Main {
                     Write the number of your option >""");
             switch (menuOption){
                 case 1:
-                    String movieTitle = ScannerUtils.getText("Write name of the movie: ");
-                    Genre movieGenre = ScannerUtils.getGenre("Write movie genre: ");
-                    int movieDuration = ScannerUtils.getNumber("Write movie duration: ");
-                    double movieRate = ScannerUtils.getDouble("Write movie rate: ");
-                    LocalDate movieDateOfPremiere = ScannerUtils.getDate("Write Date of premiere of the movie (yyyy-MM-dd): ");
+                    int contentOption = ScannerUtils.getNumber("Write the type of content that you want to add: \n 1.Movie \n 2.Documentary");
 
-                    Movie movie = new Movie(movieTitle, movieDuration,movieGenre, movieDateOfPremiere, movieRate);
+                    try{
+                        switch (contentOption){
+                            case 1:
+                                String movieTitle = ScannerUtils.getText("Write name of the content: ");
+                                Genre movieGenre = ScannerUtils.getGenre("Write content genre: ");
+                                int movieDuration = ScannerUtils.getNumber("Write content duration: ");
+                                LocalDate movieDateOfPremiere = ScannerUtils.getDate("Write Date of premiere of the content (yyyy-MM-dd): ");
+                                double movieRate = ScannerUtils.getDouble("Write content rate: ");
 
-                    platform.addMovie(movie);
-                    System.out.println("✅ Movie added!");
-                    break;
+                                Movie movie = new Movie(movieTitle, movieDuration,movieGenre, movieDateOfPremiere, movieRate);
+
+                                platform.addMovie(movie);
+                                System.out.println("✅ Content added!");
+                                break;
+                            case 2:
+                                String documentaryTitle = ScannerUtils.getText("Write name of the content: ");
+                                Genre documentaryGenre = ScannerUtils.getGenre("Write content genre: ");
+                                int documentaryDuration = ScannerUtils.getNumber("Write content duration: ");
+                                double documentaryRate = ScannerUtils.getDouble("Write content rate: ");
+                                LocalDate documentaryDateOfPremiere = ScannerUtils.getDate("Write Date of premiere of the content (yyyy-MM-dd): ");
+                                String documentaryNarrator = ScannerUtils.getText("Write the narrator of the documentary:");
+                                Documentary documentary = new Documentary(documentaryTitle,documentaryDuration, documentaryGenre, documentaryDateOfPremiere, documentaryRate, documentaryNarrator);
+
+                                platform.addMovie(documentary);
+                                System.out.println("✅ Content added!");
+                            default:
+                                System.out.println("❌ Invalid option!");
+                        }
+
+
+                    }catch (MovieAlreadyExistException e) {
+                        System.out.println("Couldn't add the movie: " + e.getMessage());
+                    }
 
                 case 2:
                     List<SummaryContent> moviesSummary = platform.getSummaries();
@@ -64,7 +84,7 @@ public class Main {
                     break;
                 case 5:
                     Genre genreToSearch = ScannerUtils.getGenre("Write the genre of the movies ");
-                    List<Movie> listOfMoviesByGenre = platform.searchByGenre(genreToSearch);
+                    List<Content> listOfMoviesByGenre = platform.searchByGenre(genreToSearch);
 
                     if(listOfMoviesByGenre.isEmpty()){
                         System.out.println("No movies found by genre " + genreToSearch);
@@ -73,18 +93,18 @@ public class Main {
                     }
                     break;
                 case 6:
-                    List<Movie> moviesSorted = platform.sortByRate();
+                    List<Content> moviesSorted = platform.sortByRate();
                     moviesSorted.forEach(movieSorted -> System.out.println(movieSorted.getDatasheet()));
                     break;
                 case 7:
-                    String movieTitleToPlay = ScannerUtils.getText("Write name of the movie you want to play");
-                    Movie movieToPlay = platform.searchByTitle(movieTitleToPlay);
+                    String movieTitleToPlay = ScannerUtils.getText("Write name of the content you want to play");
+                    Content contentToPlay = platform.searchByTitle(movieTitleToPlay);
 
-                    if(movieToPlay != null){
-                        platform.playMovie(movieToPlay);
+                    if(contentToPlay != null){
+                        platform.playMovie(contentToPlay);
                         break;
                     }else{
-                        System.out.println("❌ Movie not found");
+                        System.out.println("❌ Content not found");
                     }
                 case 8:
                     System.out.println("👋🏼 Closing app...");

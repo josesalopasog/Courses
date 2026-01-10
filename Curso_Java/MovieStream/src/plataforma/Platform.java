@@ -1,6 +1,6 @@
 package plataforma;
 
-import content.Movie;
+import content.Content;
 import content.Genre;
 import content.SummaryContent;
 import execeptions.MovieAlreadyExistException;
@@ -10,99 +10,99 @@ import java.util.*;
 
 public class Platform {
     private String name;
-    private List<Movie> movieList;
-    private Map<Movie, Integer> views;
+    private List<Content> contentList;
+    private Map<Content, Integer> views;
 
     public Platform(String name){
         this.name = name;
-        this.movieList = new ArrayList<>();
+        this.contentList = new ArrayList<>();
         this.views = new HashMap<>();
     }
 
-    public void addMovie(Movie element){
-        Movie movieValidation = this.searchByTitle(element.getTitle());
-        if (movieValidation != null){
+    public void addMovie(Content element){
+        Content contentValidation = this.searchByTitle(element.getTitle());
+        if (contentValidation != null){
             throw new MovieAlreadyExistException(element.getTitle());
         }
         FileUtils.writeData(element);
-        this.movieList.add(element);
+        this.contentList.add(element);
     }
 
-    public void playMovie(Movie movie){
-        int countViews = views.getOrDefault(movie, 0);
-        System.out.println(movie.getTitle() + "have" + countViews + "views");
+    public void playMovie(Content content){
+        int countViews = views.getOrDefault(content, 0);
+        System.out.println(content.getTitle() + "have" + countViews + "views");
 
-        this.countViews(movie);
-        movie.play();
+        this.countViews(content);
+        content.play();
     }
 
-    private  void countViews(Movie movie){
-        int countViews = views.getOrDefault(movie, 0);
-        views.put(movie, countViews + 1);
+    private  void countViews(Content content){
+        int countViews = views.getOrDefault(content, 0);
+        views.put(content, countViews + 1);
     }
 
     public List<String> getAllTitles(){
-        return movieList.stream()
-                .map(Movie::getTitle)
+        return contentList.stream()
+                .map(Content::getTitle)
                 .toList();
     }
 
     public List<SummaryContent> getSummaries(){
-        return movieList.stream()
+        return contentList.stream()
                 .map(movie -> new SummaryContent(movie.getTitle(), movie.getDuration(), movie.getGenre()))
                 .toList();
     }
 
-    public Movie searchByTitle(String title) {
-        for (Movie movie : movieList) {
-            if (movie.getTitle().equalsIgnoreCase(title)) {
-                return movie;
+    public Content searchByTitle(String title) {
+        for (Content content : contentList) {
+            if (content.getTitle().equalsIgnoreCase(title)) {
+                return content;
             }
         }
         return null;
     }
 
-    public List<Movie> searchByGenre(Genre genre){
-        List<Movie> movieListFiltered = movieList.stream()
+    public List<Content> searchByGenre(Genre genre){
+        List<Content> contentListFiltered = contentList.stream()
                 .filter(movie -> movie.getGenre().equals(genre))
                 .toList();
-        if (movieListFiltered.isEmpty()) {
+        if (contentListFiltered.isEmpty()) {
             System.out.println("No movies found for genre: " + genre);
         }
 
-        return movieListFiltered;
+        return contentListFiltered;
     }
 
-    public List<Movie> sortByRate (){
-        return movieList.stream()
-                .sorted(Comparator.comparingDouble(Movie::getScore).reversed())
+    public List<Content> sortByRate (){
+        return contentList.stream()
+                .sorted(Comparator.comparingDouble(Content::getScore).reversed())
                 .toList();
     }
 
     public int getTotalDuration(){
-        return movieList.stream()
-                .mapToInt(Movie::getDuration)
+        return contentList.stream()
+                .mapToInt(Content::getDuration)
                 .sum();
     }
 
     public void removeByTitle(String title) {
-        for (int i = 0; i < movieList.size(); i++) {
-            if (movieList.get(i).getTitle().equalsIgnoreCase(title)) {
-                movieList.remove(i);
-                System.out.println("💀 Movie removed successfully.");
+        for (int i = 0; i < contentList.size(); i++) {
+            if (contentList.get(i).getTitle().equalsIgnoreCase(title)) {
+                contentList.remove(i);
+                System.out.println("💀 Content removed successfully.");
                 return;
             }
         }
 
-        System.out.println("❌ Movie not found.");
+        System.out.println("❌ Content not found.");
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Movie> getMovieList() {
-        return movieList;
+    public List<Content> getMovieList() {
+        return contentList;
     }
 
 
