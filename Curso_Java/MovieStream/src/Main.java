@@ -19,6 +19,7 @@ public class Main {
         loadSampleMovies(platform);
 
         System.out.println("Content in this app: " + platform.getTotalDuration() + "min to watch! \n");
+        platform.getPromo().forEach(promoContent -> System.out.println(promoContent.promo()));
 
         while(true){
             int menuOption = ScannerUtils.getNumber("""
