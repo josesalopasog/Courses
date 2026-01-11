@@ -2,7 +2,7 @@ package content;
 
 import java.time.LocalDate;
 
-public class Content {
+public abstract class Content {
     private String title;
     private String description;
     private int duration;
@@ -26,9 +26,7 @@ public class Content {
         this.rate(score);
     }
 
-    public void play() {
-        System.out.println("Playing " + title);
-    }
+    public abstract void play();
 
     public String getDatasheet(){
         return "-----------Content Datasheet--------------\n"+

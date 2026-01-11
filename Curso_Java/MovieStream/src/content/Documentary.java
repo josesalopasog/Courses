@@ -13,4 +13,9 @@ public class Documentary extends Content{
     public String getNarrator() {
         return narrator;
     }
+
+    @Override
+    public void play() {
+        System.out.println("Playing documentary " + getTitle() + " Narrator: " + getNarrator());
+    }
 }
