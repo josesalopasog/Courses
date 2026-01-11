@@ -29,8 +29,9 @@ public class Main {
                     4. Remove content
                     5. Search by genre
                     6. View Populars
-                    7. Play Move
-                    8. Exit
+                    7. Play Movie
+                    8. Type of content
+                    9. Exit
                     Write the number of your option >""");
             switch (menuOption){
                 case 1:
@@ -107,6 +108,17 @@ public class Main {
                         System.out.println("❌ Content not found");
                     }
                 case 8:
+                    int typeOfContent = ScannerUtils.getNumber("Write the type of content that you want to see: \n 1.Movie \n 2.Documentary");
+                    if (typeOfContent == 1){
+                        List<Movie> movies = platform.getMovies();
+                        movies.forEach(movie -> System.out.println(movie.getTitle()));
+                        break;
+                    }else{
+                        List<Documentary> documentaries = platform.getDocumentaries();
+                        documentaries.forEach(documentary -> System.out.println(documentary.getTitle()));
+                        break;
+                    }
+                case 9:
                     System.out.println("👋🏼 Closing app...");
                     return;
                 default:

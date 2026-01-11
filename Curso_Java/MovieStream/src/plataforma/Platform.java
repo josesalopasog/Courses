@@ -1,8 +1,6 @@
 package plataforma;
 
-import content.Content;
-import content.Genre;
-import content.SummaryContent;
+import content.*;
 import execeptions.MovieAlreadyExistException;
 import utils.FileUtils;
 
@@ -76,6 +74,20 @@ public class Platform {
     public List<Content> sortByRate (){
         return contentList.stream()
                 .sorted(Comparator.comparingDouble(Content::getScore).reversed())
+                .toList();
+    }
+
+    public List<Movie> getMovies(){
+        return contentList.stream()
+                .filter(content -> content instanceof Movie)
+                .map(filteredContent -> (Movie) filteredContent)
+                .toList();
+    }
+
+    public List<Documentary> getDocumentaries(){
+        return contentList.stream()
+                .filter(content -> content instanceof Documentary)
+                .map(filteredContent -> (Documentary) filteredContent)
                 .toList();
     }
 
