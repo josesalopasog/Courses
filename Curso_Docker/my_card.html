@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Social Links</title>
+  <style>
+    :root{
+      --bg1:#000000;
+      --bg2:#1b1b1f;
+      --card:#0f1115cc;
+      --border:#2a2f3a;
+      --text:#e9edf6;
+      --muted:#aab3c5;
+
+      --cyan:#00e5ff;
+      --magenta:#ff2bd6;
+
+      --glow-cyan: 0 0 18px rgba(0,229,255,.35);
+      --glow-mag:  0 0 18px rgba(255,43,214,.30);
+    }
+
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Liberation Sans", sans-serif;
+      color:var(--text);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x:hidden;
+    }
+
+    /* Decorative blobs */
+    .blob{
+      position:fixed;
+      width:520px; height:520px;
+      filter: blur(70px);
+      opacity:.30;
+      z-index:-1;
+      border-radius:50%;
+      pointer-events:none;
+    }
+    .blob.cyan{
+      background: radial-gradient(circle at 30% 30%, var(--cyan), transparent 60%);
+      top:-180px; left:-180px;
+    }
+    .blob.magenta{
+      background: radial-gradient(circle at 70% 70%, var(--magenta), transparent 60%);
+      bottom:-220px; right:-200px;
+    }
+
+    .wrap{
+      min-height:100%;
+      display:grid;
+      place-items:center;
+      padding:48px 18px;
+    }
+
+    .card{
+      width:min(920px, 100%);
+      background: var(--card);
+      border:1px solid rgba(42,47,58,.75);
+      border-radius:20px;
+      padding:28px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      position:relative;
+      overflow:hidden;
+    }
+    .card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: linear-gradient(90deg, rgba(0,229,255,.35), rgba(255,43,214,.30), rgba(0,229,255,.35));
+      filter: blur(18px);
+      opacity:.45;
+      z-index:0;
+    }
+    .card > *{ position:relative; z-index:1; }
+
+    header{
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .title{
+      line-height:1.1;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(26px, 3.4vw, 40px);
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:8px 0 0;
+      color:var(--muted);
+      max-width:58ch;
+      font-size:14.5px;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(42,47,58,.9);
+      background: rgba(10,12,16,.65);
+      color:var(--muted);
+      font-size:13px;
+      user-select:none;
+    }
+    .dot{
+      width:10px; height:10px;
+      border-radius:50%;
+      background: linear-gradient(90deg, var(--cyan), var(--magenta));
+      box-shadow: var(--glow-cyan), var(--glow-mag);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    @media (max-width: 720px){
+      .grid{ grid-template-columns: 1fr; }
+      .card{ padding:22px; }
+    }
+
+    a.social{
+      text-decoration:none;
+      color:inherit;
+      border:1px solid rgba(42,47,58,.9);
+      background: rgba(7,9,12,.55);
+      border-radius:16px;
+      padding:16px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    a.social::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background: linear-gradient(90deg, rgba(0,229,255,.12), rgba(255,43,214,.10));
+      opacity:0;
+      transition: opacity .18s ease;
+      pointer-events:none;
+    }
+    a.social:hover{
+      transform: translateY(-2px);
+      border-color: rgba(0,229,255,.55);
+      box-shadow: 0 10px 30px rgba(0,0,0,.45), var(--glow-cyan);
+      background: rgba(10,14,18,.68);
+    }
+    a.social:hover::after{ opacity:1; }
+
+    .left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
+    }
+    .icon{
+      width:44px; height:44px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      border:1px solid rgba(42,47,58,.9);
+      background: rgba(8,10,14,.75);
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+      flex: 0 0 auto;
+    }
+    .icon svg{ width:22px; height:22px; }
+
+    .name{
+      display:flex;
+      flex-direction:column;
+      gap:3px;
+      min-width:0;
+    }
+    .name strong{
+      font-size:15.5px;
+      letter-spacing:.2px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+    .name span{
+      color:var(--muted);
+      font-size:12.8px;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+    }
+
+    .arrow{
+      flex:0 0 auto;
+      opacity:.8;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    a.social:hover .arrow{
+      opacity:1;
+      transform: translateX(2px);
+    }
+
+    footer{
+      margin-top:18px;
+      padding-top:16px;
+      border-top:1px solid rgba(42,47,58,.55);
+      color:var(--muted);
+      font-size:12.8px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    /* Brand accents */
+    .accent-cyan{ color:var(--cyan); }
+    .accent-magenta{ color:var(--magenta); }
+  </style>
+</head>
+<body>
+  <div class="blob cyan"></div>
+  <div class="blob magenta"></div>
+
+  <main class="wrap">
+    <section class="card" aria-label="Social links">
+      <header>
+        <div class="title">
+          <h1>Hi I'm Jose Salopaso</h1>
+          <p class="subtitle">
+            Find me on my favorite platforms.
+          </p>
+        </div>
+      </header>
+
+      <div class="grid">
+        <!-- FACEBOOK -->
+        <a class="social" href="https://www.facebook.com/josesalopaso/" target="_blank" rel="noopener noreferrer" aria-label="Facebook link">
+          <div class="left">
+            <div class="icon" aria-hidden="true">
+              <!-- Simple "F" icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M14 8.5V7.3c0-.8.5-1.3 1.4-1.3H17V3h-2.3C12.2 3 11 4.6 11 6.8V8.5H9v3h2V21h3v-9.5h2.7l.3-3H14z"
+                      fill="url(#g1)"/>
+                <defs>
+                  <linearGradient id="g1" x1="0" y1="0" x2="24" y2="24">
+                    <stop stop-color="#00e5ff"/>
+                    <stop offset="1" stop-color="#ff2bd6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="name">
+              <strong>Facebook</strong>
+              <span>Profile / Page</span>
+            </div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="rgba(233,237,246,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- INSTAGRAM -->
+        <a class="social" href="https://www.instagram.com/josesalopaso/" target="_blank" rel="noopener noreferrer" aria-label="Instagram link">
+          <div class="left">
+            <div class="icon" aria-hidden="true">
+              <!-- camera icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M8 3h8l1.2 2H20a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2.8L8 3z"
+                      stroke="url(#g2)" stroke-width="2" />
+                <path d="M12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"
+                      stroke="url(#g2)" stroke-width="2" />
+                <path d="M17.5 8.2h.01" stroke="url(#g2)" stroke-width="3" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="g2" x1="0" y1="0" x2="24" y2="24">
+                    <stop stop-color="#00e5ff"/>
+                    <stop offset="1" stop-color="#ff2bd6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="name">
+              <strong>Instagram</strong>
+              <span>Photos / Reels</span>
+            </div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="rgba(233,237,246,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- GITHUB -->
+        <a class="social" href="https://github.com/josesalopasog" target="_blank" rel="noopener noreferrer" aria-label="GitHub link">
+          <div class="left">
+            <div class="icon" aria-hidden="true">
+              <!-- code bracket icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M8 17l-5-5 5-5" stroke="url(#g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M16 7l5 5-5 5" stroke="url(#g3)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M14 5l-4 14" stroke="url(#g3)" stroke-width="2" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="g3" x1="0" y1="0" x2="24" y2="24">
+                    <stop stop-color="#00e5ff"/>
+                    <stop offset="1" stop-color="#ff2bd6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="name">
+              <strong>GitHub</strong>
+              <span>Projects / Repositories</span>
+            </div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="rgba(233,237,246,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- TWITCH -->
+        <a class="social" href="https://www.twitch.tv/levipley" target="_blank" rel="noopener noreferrer" aria-label="Twitch link">
+          <div class="left">
+            <div class="icon" aria-hidden="true">
+              <!-- chat bubble icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M4 4h16v11a3 3 0 0 1-3 3h-6l-3 3v-3H7a3 3 0 0 1-3-3V4z"
+                      stroke="url(#g4)" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M9 8v5" stroke="url(#g4)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M15 8v5" stroke="url(#g4)" stroke-width="2" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="g4" x1="0" y1="0" x2="24" y2="24">
+                    <stop stop-color="#00e5ff"/>
+                    <stop offset="1" stop-color="#ff2bd6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="name">
+              <strong>Twitch</strong>
+              <span>Live streams</span>
+            </div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="rgba(233,237,246,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <!-- YOUTUBE -->
+        <a class="social" href="https://www.youtube.com/@josesalopaso" target="_blank" rel="noopener noreferrer" aria-label="YouTube link">
+          <div class="left">
+            <div class="icon" aria-hidden="true">
+              <!-- play icon -->
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M21 12s0-5-1-6-6-1-8-1-7 0-8 1-1 6-1 6 0 5 1 6 6 1 8 1 7 0 8-1 1-6 1-6z"
+                      stroke="url(#g5)" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M10 9l6 3-6 3V9z" fill="url(#g5)"/>
+                <defs>
+                  <linearGradient id="g5" x1="0" y1="0" x2="24" y2="24">
+                    <stop stop-color="#00e5ff"/>
+                    <stop offset="1" stop-color="#ff2bd6"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+            <div class="name">
+              <strong>YouTube</strong>
+              <span>Videos / Channel</span>
+            </div>
+          </div>
+          <div class="arrow" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none">
+              <path d="M9 18l6-6-6-6" stroke="rgba(233,237,246,.85)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      <footer>
+        <span>Everyday I'm <span class="accent-magenta">learning</span> something new.</span>
+        <span>© <span id="year"></span> Jose Salopaso</span>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    // Auto year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.play_stream;
+package com.play_stream.domain.services;
 
 import dev.langchain4j.service.UserMessage;
 import dev.langchain4j.service.V;
